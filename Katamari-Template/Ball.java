@@ -12,8 +12,10 @@ public class Ball extends Actor
 
     //Instance Variables    
     int size = 20;
+    int ballX;
+    int ballY;
     Color ballColor;
-    private boolean debug=true;
+    private boolean debug=false;
     private boolean readyToStart=false;
 
     /**
@@ -22,7 +24,7 @@ public class Ball extends Actor
      */
     public Ball() 
     {
-        this(20);
+        this(20,0,0);
     }// End Constructor
 
     /***
@@ -30,12 +32,15 @@ public class Ball extends Actor
      * 
      * @param sizeIn The size of the ball to create
      */
-    public Ball(int sizeIn) 
+    public Ball(int sizeIn,int x, int y) 
     {
-        size = sizeIn;
+        size = sizeIn+1;
         ballColor = Color.CYAN;
         updateImage();
         readyToStart =false;
+        
+        ballX = x;
+        ballY = y;
     }//End Constructor
 
     /**
@@ -84,7 +89,7 @@ public class Ball extends Actor
 
         //Draw Circle
         displayImage.setColor(ballColor); //Set color to ballColor
-        displayImage.drawOval(100, 100, size, size);//Draw a circle
+        displayImage.drawOval(ballX, ballY, size, size);//Draw a circle
 
         //Display the number inside circle
         Font displayFont = new Font( (int)(size*0.75) );
@@ -119,9 +124,9 @@ public class Ball extends Actor
                 Ball tempBall;
                 tempBall = (Ball)ballList.get(i);  //Note, I have to do a cast conversion here to tell Java to expect a specific object type
                 //Check the size of the ball and save if needed
-                if(tempBall.getSize() > biggestBall.getSize()){
-                    biggestBall = tempBall;
-                }    
+                //if(tempBall.getSize() > biggestBall.getSize()){
+                //    biggestBall = tempBall;
+                //}    
             }
             
 
