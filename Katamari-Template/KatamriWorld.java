@@ -32,7 +32,7 @@ public class KatamriWorld extends World
     private static int KATAMARISTARTSIZE = 15; //Size to start Katamari at
     
     //Instance Variables    
-    private boolean debug=false;  //Turn on to enable extra debugging statements
+    private boolean debug=true;  //Turn on to enable extra debugging statements
     
     /**
      * Constructor for objects of class KatamariWorld.
@@ -44,7 +44,7 @@ public class KatamriWorld extends World
         super(600, 400, 1); //Please do not make this bigger, I mark on a laptop screen
         int randomX = Greenfoot.getRandomNumber(600);
         int randomY = Greenfoot.getRandomNumber(400);
-        addObject(new Ball(50), randomX, randomY);
+        addObject(new Ball(50,randomX,randomY), randomX, randomY);
         //Populate the world with the starting number of balls
         for (int i=0;i<NUMSTARTTHINGS;i++)
         {
@@ -95,7 +95,7 @@ public class KatamriWorld extends World
         if (getObjectsAt(randX,randY,Ball.class).isEmpty()) {
             //Add a ball to the world
             
-            addObject (new Ball(randSize),randX,randY);
+            addObject (new Ball(randSize,randX,randY),randX,randY);
             //Successfully complete task so return true
             return true;
         }
@@ -117,8 +117,8 @@ public class KatamriWorld extends World
         
         if(getObjectsAt(randX, randY, Ball.class).isEmpty()){
             
-            Ball katamari = new Ball(KATAMARISTARTSIZE);
-            addObject(katamari, randX, randY);
+            
+            addObject(new Ball(KATAMARISTARTSIZE,randX,randY), randX, randY);
         //Place the ball into the world
             return true;
         }
